@@ -1,13 +1,335 @@
 body {
+  height: 100%;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  padding: 0;
+  font-family: "-apple-system", BlinkMacSystemFont, "Segoe UI", Roboto,
+    Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+    "Segoe UI Symbol";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-user-select: none; /* Safari */
+  -ms-user-select: none; /* IE 10 and IE 11 */
+  user-select: none; /* Standard syntax */
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.ipod {
+  margin: 5% auto;
+  width: 20em;
+  height: 30em;
+  background: #dadada;
+  border-radius: 1.3em;
+  box-shadow: inset 0 0 2.4em #555;
+}
+
+/*iPod SCREEN */
+.ipod .screen {
+  position: relative;
+  top: 0.9em;
+  margin: 0 auto;
+  width: 18em;
+  height: 12em;
+  background: #555;
+  color: #c1c1ba;
+  border: 2px solid rgb(179, 137, 137);
+  animation: fadeFromBlack 0.5s;
+  border-radius: 0.3125em;
+  padding-left: 2%;
+  overflow: hidden;
+}
+
+@keyframes fadeFromBlack {
+  0% {
+    filter: brightness(0);
+  }
+}
+
+.title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: 0.8em;
+  transform: translate(-50%, -50%);
+}
+.title-bar {
+  position: absolute;
+  left: 5px;
+  right: 5px;
+  height: 14%;
+  border-bottom: 1px solid #252521;
+  text-align: center;
+}
+.play-icon {
+  position: absolute;
+  display: inline-block;
+  top: 12%;
+  left: 10px;
+  transform: translate(0, -50%);
+  height: 0;
+  width: 0;
+}
+.battery {
+  position: absolute;
+  right: 5px;
+  height: 40px;
+  width: 100px;
+}
+.battery.small {
+  transform: scale(0.3, 0.3);
+  transform-origin: 100% 25%;
+}
+.menu-options {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+  top: 15%;
+  height: 80%;
+  animation: fade 0.5s;
+}
+@keyframes fade {
+  from {
+    transform: scale(0.5, 0.5);
+  }
+  to {
+    transform: scale(1, 1);
+  }
+}
+.option {
+  padding-left: 12px;
+  padding-bottom: 4px;
+}
+.option:after {
+  content: "";
+  position: absolute;
+  right: 18px;
+  border-bottom: 3px solid #c1c1ba;
+  border-right: 3px solid #c1c1ba;
+  width: 7px;
+  height: 7px;
+  transform: rotate(-45deg) skew(7deg, 7deg);
+  transform-origin: 180%;
+}
+.option.selected,
+.song-card.selected {
+  background: linear-gradient(rgb(60, 184, 255) 0%, rgb(52, 122, 181) 100%);
+  border-bottom: 2px solid #484647;
+  color: white;
+  font-weight: bold;
+}
+.option.selected:after {
+  border-bottom: 3px solid white;
+  border-right: 3px solid white;
+}
+
+/* Coverflow classes */
+.bg {
+  padding-top: 30px;
+}
+
+.wrapper {
+  width: 300px;
+  height: 240px;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.wrapper-inner {
+  margin-left: 0px;
+  margin-top: 30px;
+  width: 270px;
+  height: 150px;
+  animation: infinite-spinning 0.5s;
+}
+@keyframes infinite-spinning {
+  from {
+    transform: translate(-100%);
+  }
+  to {
+    transform: translate(0%);
+  }
+}
+
+.title-heading {
+  position: absolute;
+  font-size: 15px;
+  top: 168px;
+  left: 95px;
+  font-weight: bold;
+  color: white;
+  max-width: 100px;
+  max-height: 20px;
+  overflow: hidden;
+}
+
+/*iPod Controls  */
+
+.controls {
+  position: relative;
+  margin: 3.9em auto;
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 1px 5px 20px #555;
+  touch-action: none;
+}
+.ipod .controls .menu {
+  position: absolute;
+  top: 0.5em;
+  left: 4em;
+  font: 300 100% sans-serif;
+  color: #b4bcc5;
+  user-select: none;
+  touch-action: none;
+}
+.ipod .controls .next {
+  position: absolute;
+  top: 5.2em;
+  left: 9.2em;
+  user-select: none;
+  touch-action: none;
+}
+
+.ipod .controls .play {
+  position: absolute;
+  top: 9.6em;
+  left: 4.5em;
+  user-select: none;
+  touch-action: none;
+}
+
+.ipod .controls .previous {
+  position: absolute;
+  top: 5.2em;
+  left: 0.2em;
+  user-select: none;
+  touch-action: none;
+}
+
+.ipod .controls .centerButton {
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
+  background-color: #dadada;
+  box-shadow: inset 0 0 2.4em rgb(187, 181, 181);
+}
+
+/* Music.js songs css */
+.list {
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 3px;
+  animation: fade 0.5s;
+}
+.song-card {
+  padding: 0;
+  border: none;
+  border-radius: 1px;
+  box-shadow: 0 0 1px 0 #0b0b0c, 0 0 0 0px #616060;
+  display: flex;
+}
+.selected-song {
+  background: rgb(166, 168, 166);
+  color: black;
+  border: none;
+  border-radius: 1px;
+  box-shadow: 0 0 1px 0 #0b0b0c, 0 0 0 0px #616060;
+  display: flex;
+  zoom: 120%;
+}
+.song-card:not(:first-child) {
+  margin-top: 2px;
+}
+.song-card .left {
+  flex: 1;
+  width: 30px;
+  height: 30px;
+}
+.song-card .left img {
+  height: 28px;
+  width: 28px;
+}
+.song-card .right {
+  position: relative;
+  flex: 10;
+  width: 30px;
+  height: 30px;
+}
+.song-card .song-title {
+  padding: 0px 5px;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: right;
+}
+.song-card .song-singer {
+  padding: 0px 5px;
+  font-size: 10px;
+  font-weight: 600;
+  text-align: right;
+}
+.song-card .song-length {
+  margin-top: 5px;
+  padding: 0 5px;
+  font-size: 10px;
+  font-weight: 600;
+}
+
+/* MusicPlayer.js classes */
+
+.player-wrapper {
+  position: relative;
+  background-size: cover;
+  padding: 60px 5px 97px 5px;
+  margin-top: 28px;
+  margin-right: 5px;
+  animation: fade 0.5s;
+}
+
+.react-player {
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+
+.game-wrapper {
+  position: relative;
+  padding-top: 28px;
+  width: 17.2em;
+  height: 11.6em;
+  animation: fade 0.5s;
+}
+.game-wrapper > img {
+  height: 100%;
+  width: 100%;
+}
+
+.abt-wrapper {
+  position: relative;
+  width: 17.2em;
+  height: 4.6em;
+  display: flex;
+  align-items: flex-start;
+  animation: fade 0.5s;
+}
+.abt-wrapper > img {
+  height: 100%;
+  width: auto;
+  margin-top: 10px;
+}
+.abt-text {
+  margin-top: 30px;
+  color: white;
+  font-weight: bold;
+  font-style: oblique;
 }
